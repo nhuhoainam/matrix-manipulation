@@ -58,6 +58,7 @@ Matrix Matrix::operator - () {
     for (int i = 0; i < height; i++)
         for (int j = 0; j < width; j++)
             res.matrix[i][j] = -matrix[i][j];
+    return res;
 }
 
 Matrix operator * (const double &x, Matrix const &A) {
@@ -65,6 +66,7 @@ Matrix operator * (const double &x, Matrix const &A) {
     for (int i = 0; i < A.height; i++)
         for (int j = 0; j < A.width; j++)
             res.matrix[i][j] = x * A.matrix[i][j];
+    return res;
 }
 
 Matrix operator * (Matrix const &A, const double &x) {
@@ -79,5 +81,13 @@ Matrix Matrix::operator * (Matrix const &other) {
         for (int j = 0; j < other.width; j++)
             for (int k = 0; k < width; k++)
                 res.matrix[i][j] += matrix[i][k] * other.matrix[k][j];
+    return res;
+}
+
+Matrix transpose(Matrix const &A) {
+    Matrix res(A.width, A.height);
+    for (int i = 0; i < A.height; i++)
+        for (int j = 0; j < A.width; j++)
+            res.matrix[j][i] = A.matrix[i][j];
     return res;
 }

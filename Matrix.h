@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 class Matrix {
 private:
     double **matrix;
@@ -17,8 +19,13 @@ public:
     friend Matrix operator * (Matrix const &A, const double &x);
     Matrix operator * (Matrix const &other);
     friend bool isMultiplicable(Matrix const &A, Matrix const &B);
+    friend Matrix transpose(Matrix const &A);
+    friend std::ostream& operator << (std::ostream& os, Matrix const &A);
+    friend std::istream& operator >> (std::istream &is, Matrix &A);
+    friend void Display(Matrix const &A);
 };
 
+Matrix transpose(Matrix const &A);
 Matrix operator * (const double &x, Matrix const &A);
 Matrix operator * (Matrix const &A, const double &x);
 bool isSameSize(Matrix const &A, Matrix const &B);
